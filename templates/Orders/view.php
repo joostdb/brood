@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Order $order
  */
+$this->extend('../layout/TwitterBootstrap/dashboard');
 ?>
 <div class="row">
     <aside class="column">
@@ -55,6 +56,12 @@
                 <strong><?= __('Notes') ?></strong>
                 <blockquote>
                     <?= $this->Text->autoParagraph(h($order->notes)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Review') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($order->review)); ?>
                 </blockquote>
             </div>
         </div>

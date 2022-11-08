@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="07d7fa3b-58c3-45d8-8ace-37abd0e7bf08" name="Brood" url="http://37.97.217.25">
+      <webServer id="07d7fa3b-58c3-45d8-8ace-37abd0e7bf08" name="Brood" url="37.97.217.25">
         <fileTransfer host="37.97.217.25" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
