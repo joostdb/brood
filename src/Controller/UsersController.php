@@ -17,7 +17,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login', 'add', 'reset', 'backup', 'privacy']);
+        $this->Authentication->addUnauthenticatedActions(['login']);
 
     }
     /**
@@ -116,15 +116,15 @@ class UsersController extends AppController
     public function login()
     {
 
-        $this->Authorization->skipAuthorization();
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result->isValid()) {
             // redirect to /articles after login success
             $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'Articles',
-                'action' => 'dashboard',
+                'controller' => 'items',
+                'action' => 'index',
             ]);
 
             return $this->redirect($redirect);
@@ -133,6 +133,7 @@ class UsersController extends AppController
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error(__('Ongeldige gegevens'));
         }
+        $this->set('ee', $result);
     }
     public function logout()
     {

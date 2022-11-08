@@ -17,7 +17,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-
+use Cake\I18n\I18n;
+use Cake\I18n\FrozenTime;
 /**
  * Application Controller
  *
@@ -50,13 +51,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
 
-       // I18n::setLocale('nl-BE');
+        I18n::setLocale('nl-BE');
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Authorization.Authorization');
-        $this->loadComponent('Paginator');
 
         if($this->request->getAttribute('authentication')->getIdentity()){
             $this->user = $this->request->getAttribute('authentication')->getIdentity();
@@ -86,6 +86,6 @@ class AppController extends Controller
         parent::beforeFilter($event);
         // for all controllers in our application, make index and view
         // actions public, skipping the authentication check
-        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+       // $this->Authentication->addUnauthenticatedActions(['index', 'view']);
     }
 }
