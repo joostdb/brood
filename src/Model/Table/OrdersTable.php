@@ -110,6 +110,11 @@ class OrdersTable extends Table
             ->allowEmptyString('review');
 
         $validator
+            ->scalar('review')
+            ->requirePresence('review', 'create')
+            ->notEmptyString('review');
+
+        $validator
             ->dateTime('date')
             ->allowEmptyDateTime('date');
 

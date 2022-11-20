@@ -421,5 +421,6 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'session' => 5000,
     ],
 ];
