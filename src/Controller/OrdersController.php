@@ -245,7 +245,7 @@ class OrdersController extends AppController
                                             ->setFrom(['brood@eke.be' => 'Brood'])
                                             ->setTo($user->email)
 
-                                            ->setSubject('Nieuwe registratie KIN vzw')
+                                            ->setSubject('')
                                             ->viewBuilder()
                                             ->setTemplate('default')
                                             ->setLayout('default');
