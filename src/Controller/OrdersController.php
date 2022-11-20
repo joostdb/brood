@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use Cake\I18n\FrozenTime;
 use Cake\Mailer\Mailer;
+
 /**
  * Orders Controller
  *
@@ -53,7 +54,7 @@ class OrdersController extends AppController
             'contain' => ['Users']
         ]);
         $orderitems = json_decode($order->itemorders);
-        foreach ($orderitems AS $item){
+        foreach ($orderitems as $item) {
 
             $orders[$item->item] = $this->fetchTable('Items')->get($item->item);
             $orders[$item->item]->orderedquantity = $item->quantity;
@@ -61,7 +62,6 @@ class OrdersController extends AppController
 
 
         $this->set(compact('order', 'orders'));
-
 
 
     }
@@ -144,7 +144,7 @@ class OrdersController extends AppController
 
     public function clientadd()
     {
-       // $this->viewBuilder()->setLayout('clientorder');
+        // $this->viewBuilder()->setLayout('clientorder');
 
         $tour = $this->fetchTable('Tour')->find('all')->select(['id'])->where(['md5(id)' => $this->request->getQuery('t')])->toArray();
         $tour = $this->fetchTable('Tour')->get($tour['0']['id']);
@@ -159,9 +159,9 @@ class OrdersController extends AppController
 
         $order = $this->Orders->find()->where(['tour_id' => $tour->id, 'user_id' => $user->id])->first();
 
-        if($order){
+        if ($order) {
             $orderitems = json_decode($order->itemorders);
-            foreach ($orderitems AS $item){
+            foreach ($orderitems as $item) {
 
                 $orders[$item->item] = $this->fetchTable('Items')->get($item->item);
                 $orders[$item->item]->orderedquantity = $item->quantity;
@@ -181,47 +181,53 @@ class OrdersController extends AppController
             $this->set('delivery', $delivery);
 
 
-
             if ($this->request->is('post')) {
 
-                    $newdata = $this->request->getData();
-                    $newitem = $this->request->getData();
+                $newdata = $this->request->getData();
+                $newitem = $this->request->getData();
 
-                    foreach ($newdata['item'] AS $item){
-                        $itemorder = $this->fetchTable('Itemorders')->newEmptyEntity();
+                foreach ($newdata['item'] as $item) {
+                    $itemorder = $this->fetchTable('Itemorders')->newEmptyEntity();
 
-                        $itemorder['quantity'] = $newitem['quantity'][$item];
-                        $itemorder['item'] = $item;
+                    $itemorder['quantity'] = $newitem['quantity'][$item];
+                    $itemorder['item'] = $item;
 
-                        $item = $this->fetchTable('Items')->get($item);
-                        $price = $item->price * $newitem['quantity'][$item->id];
-                        $itemorder['price'] = $price;
-                        $totalprice[] = $price;
-                        $totalpieces[] = $itemorder['quantity'];
-                        $itemorder['user_id'] = $user->id;
-                        $itemorder['date'] = FrozenTime::now();
-                        $itemorder['review'] = '1';
-                        $itemorder['pay'] = '0';
-                        $itemorder['notes'] = '1';
-                        $itemorder['order_session'] = $newdata['order_session'];
-                        $itemorder['tour_id'] = $newdata['tour_id'];
+                    $item = $this->fetchTable('Items')->get($item);
+                    $price = $item->price * $newitem['quantity'][$item->id];
+                    $itemorder['price'] = $price;
+                    $totalprice[] = $price;
+                    $totalpieces[] = $itemorder['quantity'];
+                    $itemorder['user_id'] = $user->id;
+                    $itemorder['date'] = FrozenTime::now();
+                    $itemorder['review'] = '1';
+                    $itemorder['pay'] = '0';
+                    $itemorder['notes'] = '1';
+                    $itemorder['order_session'] = $newdata['order_session'];
+                    $itemorder['tour_id'] = $newdata['tour_id'];
 
-                        $totalitemorders[] = $itemorder;
-                      //  $itemorder = $this->fetchTable('Itemorders')->patchEntity($itemorder, $newitem);
+if($itemorder['quantity'] >= 1){
+    $mailorders[$item->id]['name'] = $item->name;
+    $mailorders[$item->id]['quantity'] = $itemorder['quantity'];
+    $mailorders[$item->id]['price'] = $price;
+}
 
-                        if ($this->fetchTable('Itemorders')->save($itemorder)) {
-                            //stock aanvullen
-                            $stockitem = $this->fetchTable('Stock')->newEmptyEntity();
-                            $stockitem['item_id'] = $itemorder['item'];
-                            $stockitem['user_id'] = $user->id;
-                            $stockitem['tour_id'] = $newdata['tour_id'];
-                            $stockitem['quantity'] = $itemorder['quantity'];
-                            $stockitem['date'] = FrozenTime::now();
-                            $this->fetchTable('Stock')->save($stockitem);
 
-                            //$this->Flash->success(__('The item {0} has been saved.', $item->name));
-                        }
+                    $totalitemorders[] = $itemorder;
+                    //  $itemorder = $this->fetchTable('Itemorders')->patchEntity($itemorder, $newitem);
+
+                    if ($this->fetchTable('Itemorders')->save($itemorder)) {
+                        //stock aanvullen
+                        $stockitem = $this->fetchTable('Stock')->newEmptyEntity();
+                        $stockitem['item_id'] = $itemorder['item'];
+                        $stockitem['user_id'] = $user->id;
+                        $stockitem['tour_id'] = $newdata['tour_id'];
+                        $stockitem['quantity'] = $itemorder['quantity'];
+                        $stockitem['date'] = FrozenTime::now();
+                        $this->fetchTable('Stock')->save($stockitem);
+
+                        //$this->Flash->success(__('The item {0} has been saved.', $item->name));
                     }
+                }
 
                 $order = $this->Orders->newEmptyEntity();
 
@@ -238,33 +244,41 @@ class OrdersController extends AppController
                 if ($this->Orders->save($order)) {
                     $this->Flash->success(__('The order has been saved.'));
 
+                    $body = "Beste " . $user->first_name ;
+                    $body .= "<br><br>Bedankt voor je bestelling, hieronder zie je een overzicht.<br><br>";
+                    foreach($mailorders AS $mailorder){
+                        $body .= @$mailorder['quantity'] . " x " . @$mailorder['name'] . ": €" . @$mailorder['price'];
+                        $body .= "<br>";
+                    }
 
-                                        $mailer = new Mailer('default');
+                    $body .= "<HR>";
+                    $body .= "Totaalbedrag: €" . $newdata['price'];
 
-                                      $mailer->setEmailFormat('html')
-                                            ->setFrom(['brood@eke.be' => 'Brood'])
-                                            ->setTo($user->email)
 
-                                            ->setSubject('')
-                                            ->viewBuilder()
-                                            ->setTemplate('default')
-                                            ->setLayout('default');
-                                        $mailer->deliver('eee');
 
-                    return $this->redirect(['controller' => 'orders','action' => 'clientadd', '?' =>['t' => $this->request->getQuery('t'), 'c' => $this->request->getQuery('c')]]);
+                    $mailer = new Mailer('default');
+
+
+                    $mailer->setEmailFormat('html')
+                        ->setFrom(['brood@eke.be' => 'Brood'])
+                        //->setTo($user->email)
+                        ->setTo('joostdb+brood@gmail.com')
+                        ->setSubject(__('Your order'))
+                        ->viewBuilder()
+                        ->setTemplate('default')
+                        ->setLayout('default');
+                    $mailer->deliver($body);
+
+
+                    return $this->redirect(['controller' => 'orders', 'action' => 'clientadd', '?' => ['t' => $this->request->getQuery('t'), 'c' => $this->request->getQuery('c')]]);
                 }
-
-
-
-
 
 
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
-          //  $users = $this->Orders->Users->find('list', ['limit' => 200])->all();
-           // $this->set(compact('order', 'users'));
-        }
-        else{
+            //  $users = $this->Orders->Users->find('list', ['limit' => 200])->all();
+            // $this->set(compact('order', 'users'));
+        } else {
             $this->Flash->error(__('You are no part of this tour.'));
             return $this->redirect(['controller' => 'users', 'action' => 'logout']);
         }
