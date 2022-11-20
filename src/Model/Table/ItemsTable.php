@@ -40,6 +40,35 @@ class ItemsTable extends Table
         $this->setTable('items');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->hasmany('Stock', [
+            'foreignKey' => 'item_id',
+
+        ]);
+
+        $this->addBehavior('Proffer.Proffer', [
+            'photo' => [	// The name of your upload field
+                'root' => WWW_ROOT . 'files', // Customise the root upload folder here, or omit to use the default
+                'dir' => 'photo_dir',	// The name of the field to store the folder
+                'thumbnailSizes' => [ // Declare your thumbnails
+                    'square' => [	// Define the prefix of your thumbnail
+                        'w' => 200,	// Width
+                        'h' => 200,	// Height
+                        'jpeg_quality'	=> 100
+                    ],
+                    'portrait' => [		// Define a second thumbnail
+                        'w' => 100,
+                        'h' => 300
+                    ],
+                    'mobile' => [			// Create a smaller copy based on width or height that respects ratio
+                        'w' => 421,		// Height can be omitted (or vice versa)
+                        'upsize' => false	// Prevent the image from being upsized if it is narrower than specified width
+                    ]
+                ],
+                'thumbnailMethod' => 'Gd'	// Options are Imagick or Gd
+            ]
+        ]);
+
     }
 
     /**
@@ -55,6 +84,11 @@ class ItemsTable extends Table
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
+
+        $validator
+            ->integer('user_id')
+            ->requirePresence('user_id', 'create')
+            ->notEmptyString('user_id');
 
         $validator
             ->scalar('description')
@@ -80,14 +114,8 @@ class ItemsTable extends Table
             ->notEmptyString('weight');
 
         $validator
-            ->scalar('photo')
-            ->maxLength('photo', 250)
             ->allowEmptyString('photo');
 
-        $validator
-            ->scalar('photo_dir')
-            ->maxLength('photo_dir', 250)
-            ->allowEmptyString('photo_dir');
 
         $validator
             ->dateTime('deadline')

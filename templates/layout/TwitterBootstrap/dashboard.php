@@ -24,21 +24,36 @@ $this->start('tb_body_start');
         <ul class="navbar-nav list-group list-group-horizontal">
 
             <li class="nav-item p-2">
-                <a class="nav-link" href="items">Items</a>
+                <a class="nav-link" href="<?= $baseURL ?>tour/dashboard">home</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="users">Users</a>
+                <a class="nav-link" href="<?= $baseURL ?>items">Items</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="delivery">Delivery</a>
+                <a class="nav-link" href="<?= $baseURL ?>users">Users</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="orders">Orders</a>
+                <a class="nav-link" href="<?= $baseURL ?>clientsaddresses">Adresses</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link" href="<?= $baseURL ?>delivery">Delivery</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link" href="<?= $baseURL ?>tour">Tour</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link" href="<?= $baseURL ?>orders">Orders</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link" href="<?= $baseURL ?>itemorders">Itemorders</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link" href="<?= $baseURL ?>stock">Stock</a>
             </li>
         </ul>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="users/logout">Sign out</a>
+                <a class="nav-link" href="<?= $baseURL ?>/users/logout">Sign out</a>
             </li>
         </ul>
     </header>
@@ -76,3 +91,7 @@ $this->end();
 echo $this->fetch('content');
 
 $this->append('footer', '</main></div></div>');
+
+?>
+
+

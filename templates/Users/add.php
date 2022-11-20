@@ -18,14 +18,23 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
+
                     echo $this->Form->control('email');
                     echo $this->Form->control('password');
                     echo $this->Form->control('name');
                     echo $this->Form->control('first_name');
-                    echo $this->Form->control('photo');
-                    echo $this->Form->control('photo_dir');
-                    echo $this->Form->control('user_type');
-                    echo $this->Form->control('contract');
+
+                echo $this->Form->control('street');
+                echo $this->Form->control('number');
+                echo $this->Form->control('zip');
+                echo $this->Form->control('city');
+                echo $this->Form->control('description');
+                echo $this->Form->control('telephone');
+
+                echo $this->Form->control('photo');
+                echo $this->Form->control('photo_dir');
+                echo $this->Form->control('user_type');
+                echo $this->Form->control('contract');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Delivery $delivery
  */
+$this->extend('../layout/item');
 ?>
 <div class="row">
     <aside class="column">
@@ -47,10 +48,16 @@
             </div>
             <div class="text">
                 <strong><?= __('Items') ?></strong>
-                <blockquote>
-                    <?= $this->Text->autoParagraph(h($delivery->items)); ?>
-                </blockquote>
+                <?php
+                $items = json_decode($delivery->items);
+                foreach ($items AS $item){
+                    $cell = $this->cell('Item', [$item]);
+                    echo $cell;
+                }
+                ?>
             </div>
         </div>
     </div>
 </div>
+
+

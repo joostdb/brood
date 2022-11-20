@@ -14,7 +14,7 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
     </aside>
     <div class="column-responsive column-80">
         <div class="items form content">
-            <?= $this->Form->create($item) ?>
+            <?= $this->Form->create($item, ['type' => 'file']) ?>
             <fieldset>
                 <legend><?= __('Add Item') ?></legend>
                 <?php
@@ -24,8 +24,7 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                     echo $this->Form->control('quantity');
                     echo $this->Form->control('price');
                     echo $this->Form->control('weight');
-                    echo $this->Form->control('photo');
-                    echo $this->Form->control('photo_dir');
+                    echo $this->Form->control('photo', ['type' => 'file', 'class' => 'form-control']);
                     echo $this->Form->control('deadline');
                     echo $this->Form->control('productiondate', ['empty' => true]);
                     echo $this->Form->control('distributiondate', ['empty' => true]);

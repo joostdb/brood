@@ -34,6 +34,7 @@ use Cake\I18n\FrozenTime;
                     ]
                 );
 
+                    echo $this->Form->control('pickup');
                     echo $this->Form->control('deadline');
                     echo $this->Form->control('distributiondate', ['empty' => true]);
                 $time = FrozenTime::now();

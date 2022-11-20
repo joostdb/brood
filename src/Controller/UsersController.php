@@ -17,7 +17,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login']);
+        $this->Authentication->addUnauthenticatedActions(['login','add']);
 
     }
     /**
@@ -57,8 +57,17 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $newdata = $this->request->getData();
+            $newdata['master_id'] = $this->user_id;
+
+            $user = $this->Users->patchEntity($user, $newdata);
             if ($this->Users->save($user)) {
+                $newdata['user_id'] = $user->id;
+                $useraddress = $this->fetchTable('Clientsaddresses')->newEmptyEntity();
+                $useraddress = $this->fetchTable('Clientsaddresses')->patchEntity($useraddress, $newdata);
+                $this->fetchTable('Clientsaddresses')->save($useraddress);
+
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -78,11 +87,26 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => [],
+            'contain' => ['Clientsaddresses'],
         ]);
+        $user->street = $user->clientsaddress->street;
+        $user->number = $user->clientsaddress->number;
+        $user->zip = $user->clientsaddress->zip;
+        $user->city = $user->clientsaddress->city;
+        $user->telephone = $user->clientsaddress->telephone;
+        $user->email = $user->clientsaddress->email;
+        $user->description = $user->clientsaddress->description;
+
+
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $newdata = $this->request->getData();
+
+            $user = $this->Users->patchEntity($user, $newdata);
             if ($this->Users->save($user)) {
+
+                $useraddress = $this->fetchTable('Clientsaddresses')->patchEntity($user->clientsaddress, $newdata);
+                $this->fetchTable('Clientsaddresses')->save($useraddress);
+
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -123,8 +147,8 @@ class UsersController extends AppController
         if ($result->isValid()) {
             // redirect to /articles after login success
             $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'items',
-                'action' => 'index',
+                'controller' => 'tour',
+                'action' => 'dashboard',
             ]);
 
             return $this->redirect($redirect);

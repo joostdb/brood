@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Delivery $delivery
  */
+$this->extend('../layout/TwitterBootstrap/dashboard');
 ?>
 <div class="row">
     <aside class="column">
@@ -24,7 +25,25 @@
                 <?php
                     echo $this->Form->control('subject');
                     echo $this->Form->control('text');
-                    echo $this->Form->control('items');
+                echo $this->Form->control(
+                    'items',
+                    ['autocomplete' => 'off',
+                        'type' => 'select',
+                        'multiple' => true,
+                        'options' => $itemsext,
+                        'empty' => true,
+                        'class' => 'form-select mb-4',
+                        'label' => __('Items')
+                    ]
+                );
+                ?>
+
+                <div class="custom-control custom-switch">
+                    <?= $this->Form->control('pickup', ['type' => 'checkbox', 'class' => 'custom-control-input']) ?>
+                </div>
+
+                <?php
+
                     echo $this->Form->control('deadline');
                     echo $this->Form->control('distributiondate', ['empty' => true]);
                     echo $this->Form->control('date', ['empty' => true]);

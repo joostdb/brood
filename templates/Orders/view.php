@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Order $order
  */
+$this->extend('../layout/TwitterBootstrap/dashboard');
 ?>
 <div class="row">
     <aside class="column">
@@ -31,8 +32,22 @@
                     <td><?= $this->Number->format($order->order_session) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Tour Id') ?></th>
+                    <td><?= $this->Number->format($order->tour_id) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Item') ?></th>
-                    <td><?= $this->Number->format($order->item) ?></td>
+                    <td><?= $this->Number->format($order->itemorders) ?></td>
+                    <td>
+                        <?php
+                        foreach ($orders AS $itemorder){
+
+                            echo $itemorder->name .': ' . $itemorder->orderedquantity .'<br>';
+
+                        }
+                        ?>
+
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Quantity') ?></th>
@@ -55,6 +70,12 @@
                 <strong><?= __('Notes') ?></strong>
                 <blockquote>
                     <?= $this->Text->autoParagraph(h($order->notes)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Review') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($order->review)); ?>
                 </blockquote>
             </div>
         </div>

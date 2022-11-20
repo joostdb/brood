@@ -44,8 +44,20 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-    }
 
+
+        $this->hasOne('Clientsaddresses', [
+            'foreignKey' => 'user_id',
+        ]);
+
+        $this->hasMany('itemorders', [
+            'foreignKey' => 'user_id'
+        ]);
+
+        $this->hasMany('Tour', [
+            'foreignKey' => 'id'
+        ]);
+    }
     /**
      * Default validation rules.
      *
@@ -54,6 +66,11 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+        $validator
+            ->integer('user_id')
+        ->requirePresence('master_id', 'create')
+        ->notEmptyString('master_id');
+
         $validator
             ->email('email')
             ->requirePresence('email', 'create')

@@ -10,12 +10,14 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $order_session
+ * @property int $tour_id
  * @property int $user_id
  * @property int $item
  * @property int $quantity
  * @property int $price
  * @property string|null $notes
  * @property int $pay
+ * @property string $review
  * @property \Cake\I18n\FrozenTime|null $date
  *
  * @property \App\Model\Entity\User $user
@@ -33,12 +35,14 @@ class Order extends Entity
      */
     protected $_accessible = [
         'order_session' => true,
+        'tour_id' => true,
         'user_id' => true,
-        'item' => true,
+        'itemorders' => true,
         'quantity' => true,
         'price' => true,
         'notes' => true,
         'pay' => true,
+        'review' => true,
         'date' => true,
         'user' => true,
     ];

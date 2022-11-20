@@ -38,8 +38,10 @@ class DeliveryTable extends Table
         parent::initialize($config);
 
         $this->setTable('delivery');
-        $this->setDisplayField('id');
+        $this->setDisplayField('subject');
         $this->setPrimaryKey('id');
+
+
     }
 
     /**
@@ -50,6 +52,11 @@ class DeliveryTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+        $validator
+            ->integer('user_id')
+            ->requirePresence('user_id', 'create')
+            ->notEmptyString('user_id');
+
         $validator
             ->scalar('subject')
             ->maxLength('subject', 500)
@@ -63,6 +70,10 @@ class DeliveryTable extends Table
         $validator
             ->scalar('items')
             ->allowEmptyString('items');
+        $validator
+            ->integer('pickup')
+            ->requirePresence('pickup', 'create')
+            ->allowEmptyString('pickup');
 
         $validator
             ->dateTime('deadline')

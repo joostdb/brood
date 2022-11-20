@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Order $order
  * @var string[]|\Cake\Collection\CollectionInterface $users
  */
+$this->extend('../layout/TwitterBootstrap/dashboard');
 ?>
 <div class="row">
     <aside class="column">
@@ -24,12 +25,14 @@
                 <legend><?= __('Edit Order') ?></legend>
                 <?php
                     echo $this->Form->control('order_session');
+                    echo $this->Form->control('tour_id', ['options' => $tour]);
                     echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('item');
+                    echo $this->Form->control('itemorders');
                     echo $this->Form->control('quantity');
                     echo $this->Form->control('price');
                     echo $this->Form->control('notes');
                     echo $this->Form->control('pay');
+                    echo $this->Form->control('review');
                     echo $this->Form->control('date', ['empty' => true]);
                 ?>
             </fieldset>

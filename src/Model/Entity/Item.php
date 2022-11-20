@@ -33,6 +33,7 @@ class Item extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
+        'user_id' => true,
         'name' => true,
         'description' => true,
         'ingredients' => true,

@@ -25,7 +25,7 @@ class ItemsController extends AppController
         parent::initialize();
         // for all controllers in our application, make index and view
         // actions public, skipping the authentication check
-       // $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+        $this->Authentication->addUnauthenticatedActions(['view']);
     }
     /**
      * Index method
@@ -65,7 +65,11 @@ class ItemsController extends AppController
     {
         $item = $this->Items->newEmptyEntity();
         if ($this->request->is('post')) {
-            $item = $this->Items->patchEntity($item, $this->request->getData());
+            $newdata = $this->request->getData();
+
+            $newdata['user_id'] = $this->user_id;
+            $item = $this->Items->patchEntity($item, $newdata);
+
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
 

@@ -47,6 +47,15 @@ class OrdersTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('Tour', [
+            'foreignKey' => 'tour_id',
+        ]);
+
+        $this->hasmany('Itemorders', [
+            'foreignKey' => 'tour_id',
+            'bindingKey' => 'tour_id',
+            'propertyName' => 'itemlist'
+        ]);
     }
 
     /**
@@ -63,23 +72,28 @@ class OrdersTable extends Table
             ->notEmptyString('order_session');
 
         $validator
+            ->integer('tour_id')
+            ->requirePresence('tour_id', 'create')
+            ->allowEmptyString('tour_id');
+
+        $validator
             ->integer('user_id')
             ->notEmptyString('user_id');
 
         $validator
-            ->integer('item')
-            ->requirePresence('item', 'create')
-            ->notEmptyString('item');
+            ->scalar('itemorders')
+            ->requirePresence('itemorders', 'create')
+            ->allowEmptyString('itemorders');
 
         $validator
             ->integer('quantity')
             ->requirePresence('quantity', 'create')
-            ->notEmptyString('quantity');
+            ->allowEmptyString('quantity');
 
         $validator
             ->integer('price')
             ->requirePresence('price', 'create')
-            ->notEmptyString('price');
+            ->allowEmptyString('price');
 
         $validator
             ->scalar('notes')
@@ -88,7 +102,12 @@ class OrdersTable extends Table
         $validator
             ->integer('pay')
             ->requirePresence('pay', 'create')
-            ->notEmptyString('pay');
+            ->allowEmptyString('pay');
+
+        $validator
+            ->scalar('review')
+            ->requirePresence('review', 'create')
+            ->allowEmptyString('review');
 
         $validator
             ->dateTime('date')

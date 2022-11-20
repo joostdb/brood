@@ -53,7 +53,12 @@ class DeliveryController extends AppController
 
 
         if ($this->request->is('post')) {
-            $delivery = $this->Delivery->patchEntity($delivery, $this->request->getData());
+
+            $newdata = $this->request->getData();
+            $newdata['items'] = json_encode($newdata['items']);
+            $newdata['user_id'] = $this->user_id;
+
+            $delivery = $this->Delivery->patchEntity($delivery, $newdata);
             if ($this->Delivery->save($delivery)) {
                 $this->Flash->success(__('The delivery has been saved.'));
 
@@ -76,8 +81,17 @@ class DeliveryController extends AppController
         $delivery = $this->Delivery->get($id, [
             'contain' => [],
         ]);
+        $delivery->items = json_decode($delivery->items);
+        $items = $this->fetchTable('Items')->find('list')->order(['id' => 'desc'])->toArray();
+        $this->set('itemsext', $items);
+
+       // $delivery->items = json_decode($delivery->items, );
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $delivery = $this->Delivery->patchEntity($delivery, $this->request->getData());
+
+            $newdata = $this->request->getData();
+            $newdata['items'] = json_encode($newdata['items']);
+
+            $delivery = $this->Delivery->patchEntity($delivery, $newdata);
             if ($this->Delivery->save($delivery)) {
                 $this->Flash->success(__('The delivery has been saved.'));
 

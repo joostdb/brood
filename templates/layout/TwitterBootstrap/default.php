@@ -33,7 +33,7 @@ if (!$this->fetch('title')) {
 if (!$this->fetch('tb_footer')) {
     $this->start('tb_footer');
     if (Configure::check('App.title')) {
-        printf('&copy;%s %s', date('Y'), Configure::read('App.title'));
+        printf('&copy;%s %s', date('Y'), Configure::read('App.title') . ' & YellowSmile bv');
     } else {
         printf('&copy;%s', date('Y'));
     }
@@ -110,13 +110,21 @@ if (Configure::read('debug')) {
     <title><?= h($this->fetch('title')) ?></title>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.13/src/bootstrap-input-spinner.js" crossorigin="anonymous"></script>
 </head>
 
 <?php
 echo $this->fetch('tb_body_start');
 echo $this->fetch('tb_flash');
 echo $this->fetch('content');
-echo $this->fetch('tb_footer');
+?>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12"> <?= $this->fetch('tb_footer') ?> </div>
+    </div></div>
+
+<?php
 echo $this->fetch('script');
 echo $this->fetch('tb_body_end');
 ?>

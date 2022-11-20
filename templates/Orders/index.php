@@ -14,6 +14,7 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('order_session') ?></th>
+                    <th><?= $this->Paginator->sort('tour_id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('item') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
@@ -28,8 +29,9 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 <tr>
                     <td><?= $this->Number->format($order->id) ?></td>
                     <td><?= $this->Number->format($order->order_session) ?></td>
+                    <td><?= $this->Number->format($order->tour_id) ?></td>
                     <td><?= $order->has('user') ? $this->Html->link($order->user->name, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
-                    <td><?= $this->Number->format($order->item) ?></td>
+                    <td><?= $this->Number->format($order->itemorders) ?></td>
                     <td><?= $this->Number->format($order->quantity) ?></td>
                     <td><?= $this->Number->format($order->price) ?></td>
                     <td><?= $this->Number->format($order->pay) ?></td>

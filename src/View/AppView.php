@@ -39,5 +39,8 @@ class AppView extends View
     public function initialize(): void
     {
         parent::initialize();
+        if ($this->getLayout() === 'BootstrapUI.default'){
+            $this->setLayout('TwitterBootstrap/default');
+        }
     }
 }

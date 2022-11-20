@@ -74,6 +74,9 @@ class AppController extends Controller
             $this->set(compact('me'));
 
         }
+        $this->set('baseURL', 'https://brood.eke.be/brood/');
+        $this->set('now', FrozenTime::now());
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
