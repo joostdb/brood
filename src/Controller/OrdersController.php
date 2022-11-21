@@ -21,7 +21,7 @@ class OrdersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['clientadd']);
+        $this->Authentication->addUnauthenticatedActions(['clientadd', 'clientdelete']);
 
     }
 
@@ -126,6 +126,27 @@ class OrdersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $order = $this->Orders->get($id);
+
+        if ($this->Orders->delete($order)) {
+
+            $itemorders = $this->fetchTable('Itemorders')->find('all')->where(['user_id' => $order->user_id, 'tour_id' => $order->tour_id])->toArray();
+            $this->fetchTable('Itemorders')->deleteMany($itemorders);
+
+            $stock = $this->fetchTable('Stock')->find('all')->where(['user_id' => $order->user_id, 'tour_id' => $order->tour_id])->toArray();
+            $this->fetchTable('Stock')->deleteMany($stock);
+
+            $this->Flash->success(__('The order has been deleted.'));
+        } else {
+            $this->Flash->error(__('The order could not be deleted. Please, try again.'));
+        }
+        $this->redirect($this->referer());
+    }
+
+    public function clientdelete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $order = $this->Orders->find()->where(['md5(id)' => $id])->first();
         if ($this->Orders->delete($order)) {
 
             $itemorders = $this->fetchTable('Itemorders')->find('all')->where(['user_id' => $order->user_id, 'tour_id' => $order->tour_id])->toArray();
@@ -163,11 +184,11 @@ class OrdersController extends AppController
             $orderitems = json_decode($order->itemorders);
             foreach ($orderitems as $item) {
 
-                $orders[$item->item] = $this->fetchTable('Items')->get($item->item);
-                $orders[$item->item]->orderedquantity = $item->quantity;
+                $pendingorders[$item->item] = $this->fetchTable('Items')->get($item->item);
+                $pendingorders[$item->item]->orderedquantity = $item->quantity;
             }
 
-            $this->set(compact('order', 'orders'));
+            $this->set(compact('order', 'pendingorders'));
 
         }
 
@@ -186,6 +207,10 @@ class OrdersController extends AppController
                 $newdata = $this->request->getData();
                 $newitem = $this->request->getData();
 
+                if(array_sum($newitem['quantity']) == 0){
+                    return $this->redirect(['controller' => 'orders', 'action' => 'clientadd', '?' => ['t' => $this->request->getQuery('t'), 'c' => $this->request->getQuery('c')]]);
+                }
+
                 foreach ($newdata['item'] as $item) {
                     $itemorder = $this->fetchTable('Itemorders')->newEmptyEntity();
 
@@ -193,7 +218,7 @@ class OrdersController extends AppController
                     $itemorder['item'] = $item;
 
                     $item = $this->fetchTable('Items')->get($item);
-                    $price = $item->price * $newitem['quantity'][$item->id];
+                    $price = $item->price * $itemorder['quantity'];
                     $itemorder['price'] = $price;
                     $totalprice[] = $price;
                     $totalpieces[] = $itemorder['quantity'];
@@ -205,11 +230,11 @@ class OrdersController extends AppController
                     $itemorder['order_session'] = $newdata['order_session'];
                     $itemorder['tour_id'] = $newdata['tour_id'];
 
-if($itemorder['quantity'] >= 1){
-    $mailorders[$item->id]['name'] = $item->name;
-    $mailorders[$item->id]['quantity'] = $itemorder['quantity'];
-    $mailorders[$item->id]['price'] = $price;
-}
+                    if($itemorder['quantity'] >= 1){
+                        $mailorders[$item->id]['name'] = $item->name;
+                        $mailorders[$item->id]['quantity'] = $itemorder['quantity'];
+                        $mailorders[$item->id]['price'] = $price;
+                    }
 
 
                     $totalitemorders[] = $itemorder;
@@ -261,8 +286,8 @@ if($itemorder['quantity'] >= 1){
 
                     $mailer->setEmailFormat('html')
                         ->setFrom(['brood@eke.be' => 'Brood'])
-                        //->setTo($user->email)
-                        ->setTo('joostdb+brood@gmail.com')
+                        ->setTo($user->email)
+                        ->setBcc('joostdb+brood@gmail.com')
                         ->setSubject(__('Your order'))
                         ->viewBuilder()
                         ->setTemplate('default')
@@ -282,6 +307,27 @@ if($itemorder['quantity'] >= 1){
             $this->Flash->error(__('You are no part of this tour.'));
             return $this->redirect(['controller' => 'users', 'action' => 'logout']);
         }
+
+
+
+        $lastorders = $this->fetchTable('Orders')->find()->contain(['Users'])->where(['user_id' => $user->id])->limit(5)->order(['Orders.id' => 'desc'])->toArray();;
+//dd($lastorders);
+
+        foreach($lastorders AS $lastorder) {
+            $orderitems = json_decode($lastorder['itemorders']);
+            foreach ($orderitems as $item) {
+
+                $orders[$item->item] = $this->fetchTable('Items')->get($item->item);
+                $orders[$item->item]->orderedquantity = $item->quantity;
+                $orders[$item->item]->orderedprice = $item->price;
+            }
+
+            $this->set(compact('orders'));
+
+        }
+
+
+        $this->set(compact('lastorders'));
 
 
     }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Mailer\Mailer;
 /**
  * Tour Controller
  *
@@ -151,6 +152,8 @@ class TourController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
     public function invitations($id = null)
     {
 
@@ -167,6 +170,46 @@ class TourController extends AppController
             ->where(['Users.id IN' => $tourclients])->toArray();
 
         $this->set('clients', $clients);
+
+
+    }
+
+    public function mailinvitation()
+    {
+
+        if ($this->request->getQuery('m')) {
+
+            $user = $this->fetchTable('Users')->find('all')->where(['md5(id)' => $this->request->getQuery('m')])->first();
+            $tour = $this->Tour->find('all')->where(['md5(id)' => $this->request->getQuery('t')])->first();
+
+
+
+            $body = "Beste " . $user->first_name ;
+            $body .= "<br><br>Er is een nieuwe bestelronde. Klink de link hieronder om deel te nemen.<br><br>";
+            $body .= "<a href=\"https://brood.eke.be/brood/orders/clientadd?t=". md5(strval($tour->id)) ."&c=". md5(strval($user->id)) ."\">DEELNEMEN</a>";
+            $body .= "<HR>";
+
+
+
+            $mailer = new Mailer('default');
+
+
+            $mailer->setEmailFormat('html')
+                ->setFrom(['brood@eke.be' => 'Brood'])
+                ->setTo($user->email)
+                //->setTo('joostdb+brood@gmail.com')
+                ->setSubject(__('Nieuwe bestelronde'))
+                ->viewBuilder()
+                ->setTemplate('default')
+                ->setLayout('default');
+            $mailer->deliver($body);
+            $this->Flash->success(__('Mail verzonden.'));
+            $this->redirect($this->referer());
+        }
+
+
+
+
     }
 
     public function dashboard()
@@ -201,7 +244,7 @@ class TourController extends AppController
                 $orderitem[$item['id']]['quantity'] = $item['quantity'];
             }
 
-            $this->set('order', $orderitem);
+            $this->set('order', @$orderitem);
             $this->set('totalen', $totalen);
         }
 

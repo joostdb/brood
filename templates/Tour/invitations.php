@@ -28,6 +28,7 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 <td><?= @$client->clientsaddress->city ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('invite'), ['controller' => 'Orders', 'action' => 'clientadd', '?' =>['t' => md5($tour->id), 'c' => md5($client->id)]]) ?>
+                    <?= $this->Html->link(__('mail'), ['controller' => 'tour', 'action' => 'mailinvitation', '?' =>['t' => md5($tour->id), 'm' => md5($client->id)]]) ?>
      </td>
             </tr>
 
