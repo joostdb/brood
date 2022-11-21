@@ -6,7 +6,7 @@
 $this->extend('../layout/TwitterBootstrap/dashboard');
 ?>
 <?php
-if (@$delivery){
+if (@$delivery && @$totalen){
     ?>
 
     <div class="container">

@@ -75,7 +75,7 @@ if (Configure::check('App.author')) {
         $this->Html->meta('author', null, ['name' => 'author', 'content' => Configure::read('App.author')])
     );
 }
-$this->prepend('meta', $this->Html->meta('favicon.ico', '/favicon.ico', ['type' => 'icon']));
+//$this->prepend('meta', $this->Html->meta('favicon.ico', '/favicon.ico', ['type' => 'icon']));
 
 /**
  * Prepend `css` block with Bootstrap stylesheets
@@ -108,10 +108,14 @@ if (Configure::read('debug')) {
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= h($this->fetch('title')) ?></title>
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= $baseURL ?>/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $baseURL ?>/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $baseURL ?>/favicon-16x16.png">
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.13/src/bootstrap-input-spinner.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dc5e7787b6.js" crossorigin="anonymous"></script>
 </head>
 
 <?php
@@ -119,9 +123,9 @@ echo $this->fetch('tb_body_start');
 echo $this->fetch('tb_flash');
 echo $this->fetch('content');
 ?>
-<div class="container">
+<div class="container sticky-bottom pb-3 bg-white">
     <div class="row text-center">
-        <div class="col-12"> <?= $this->fetch('tb_footer') ?> </div>
+        <div class="col-12"><hr><?= $this->fetch('tb_footer') ?> </div>
     </div></div>
 
 <?php

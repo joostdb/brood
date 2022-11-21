@@ -1,0 +1,864 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2022-11-21 16:10+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Controller/ClientsaddressesController.php:56
+#: ./src/Controller/ClientsaddressesController.php:81
+msgid "The clientsaddress has been saved."
+msgstr ""
+
+#: ./src/Controller/ClientsaddressesController.php:60
+#: ./src/Controller/ClientsaddressesController.php:85
+msgid "The clientsaddress could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ClientsaddressesController.php:103
+msgid "The clientsaddress has been deleted."
+msgstr ""
+
+#: ./src/Controller/ClientsaddressesController.php:105
+msgid "The clientsaddress could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/DeliveryController.php:63
+#: ./src/Controller/DeliveryController.php:96
+msgid "The delivery has been saved."
+msgstr ""
+
+#: ./src/Controller/DeliveryController.php:67
+#: ./src/Controller/DeliveryController.php:100
+msgid "The delivery could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/DeliveryController.php:117
+msgid "The delivery has been deleted."
+msgstr ""
+
+#: ./src/Controller/DeliveryController.php:119
+msgid "The delivery could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ItemordersController.php:57
+#: ./src/Controller/ItemordersController.php:82
+msgid "The itemorder has been saved."
+msgstr ""
+
+#: ./src/Controller/ItemordersController.php:61
+#: ./src/Controller/ItemordersController.php:86
+msgid "The itemorder could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ItemordersController.php:104
+msgid "The itemorder has been deleted."
+msgstr ""
+
+#: ./src/Controller/ItemordersController.php:106
+msgid "The itemorder could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ItemsController.php:74
+#: ./src/Controller/ItemsController.php:98
+msgid "The item has been saved."
+msgstr ""
+
+#: ./src/Controller/ItemsController.php:78
+#: ./src/Controller/ItemsController.php:102
+msgid "The item could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/ItemsController.php:119
+msgid "The item has been deleted."
+msgstr ""
+
+#: ./src/Controller/ItemsController.php:121
+msgid "The item could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/OrdersController.php:80
+#: ./src/Controller/OrdersController.php:105
+#: ./src/Controller/OrdersController.php:266
+msgid "The order has been saved."
+msgstr "De bestelling werd opgeslagen."
+
+#: ./src/Controller/OrdersController.php:84
+#: ./src/Controller/OrdersController.php:109
+#: ./src/Controller/OrdersController.php:298
+msgid "The order could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/OrdersController.php:138
+#: ./src/Controller/OrdersController.php:158
+msgid "The order has been deleted."
+msgstr "De bestelling werd verwijderd."
+
+#: ./src/Controller/OrdersController.php:140
+#: ./src/Controller/OrdersController.php:160
+msgid "The order could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/OrdersController.php:287
+msgid "Your order"
+msgstr "Je bestelling"
+
+#: ./src/Controller/OrdersController.php:303
+msgid "You are no part of this tour."
+msgstr ""
+
+#: ./src/Controller/StockController.php:56
+#: ./src/Controller/StockController.php:82
+msgid "The stock has been saved."
+msgstr ""
+
+#: ./src/Controller/StockController.php:60
+#: ./src/Controller/StockController.php:86
+msgid "The stock could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/StockController.php:105
+msgid "The stock has been deleted."
+msgstr ""
+
+#: ./src/Controller/StockController.php:107
+msgid "The stock could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TourController.php:89
+#: ./src/Controller/TourController.php:126
+msgid "The tour has been saved."
+msgstr ""
+
+#: ./src/Controller/TourController.php:93
+#: ./src/Controller/TourController.php:130
+msgid "The tour could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/TourController.php:147
+msgid "The tour has been deleted."
+msgstr ""
+
+#: ./src/Controller/TourController.php:149
+msgid "The tour could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:62
+#: ./src/Controller/UsersController.php:86
+msgid "The user has been saved."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:66
+#: ./src/Controller/UsersController.php:90
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:107
+msgid "The user has been deleted."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:109
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:134
+msgid "Ongeldige gegevens"
+msgstr ""
+
+#: ./templates/Clientsaddresses/add.php:12
+#: ./templates/Clientsaddresses/edit.php:12
+#: ./templates/Clientsaddresses/index.php:23
+#: ./templates/Clientsaddresses/view.php:11
+#: ./templates/Delivery/add.php:12
+#: ./templates/Delivery/edit.php:11
+#: ./templates/Delivery/index.php:20
+#: ./templates/Delivery/view.php:11
+#: ./templates/Itemorders/add.php:12
+#: ./templates/Itemorders/edit.php:12
+#: ./templates/Itemorders/index.php:25
+#: ./templates/Itemorders/view.php:11
+#: ./templates/Items/add.php:11
+#: ./templates/Items/edit.php:11
+#: ./templates/Items/index.php:25
+#: ./templates/Orders/add.php:12
+#: ./templates/Orders/edit.php:12
+#: ./templates/Orders/index.php:24
+#: ./templates/Orders/view.php:11
+#: ./templates/Stock/add.php:13
+#: ./templates/Stock/edit.php:13
+#: ./templates/Stock/index.php:20
+#: ./templates/Stock/view.php:10
+#: ./templates/Tour/add.php:11
+#: ./templates/Tour/edit.php:11
+#: ./templates/Tour/index.php:18
+#: ./templates/Tour/invitations.php:16
+#: ./templates/Tour/view.php:11
+#: ./templates/Tour/view.php:73
+#: ./templates/Users/add.php:11
+#: ./templates/Users/edit.php:11
+#: ./templates/Users/index.php:25
+#: ./templates/Users/view.php:11
+msgid "Actions"
+msgstr ""
+
+#: ./templates/Clientsaddresses/add.php:13
+#: ./templates/Clientsaddresses/edit.php:18
+#: ./templates/Clientsaddresses/view.php:14
+msgid "List Clientsaddresses"
+msgstr ""
+
+#: ./templates/Clientsaddresses/add.php:20
+msgid "Add Clientsaddress"
+msgstr ""
+
+#: ./templates/Clientsaddresses/add.php:32
+#: ./templates/Clientsaddresses/edit.php:37
+#: ./templates/Delivery/add.php:44
+#: ./templates/Delivery/edit.php:52
+#: ./templates/Itemorders/add.php:34
+#: ./templates/Itemorders/edit.php:39
+#: ./templates/Items/add.php:33
+#: ./templates/Items/edit.php:39
+#: ./templates/Orders/add.php:34
+#: ./templates/Orders/clientadd.php:116
+#: ./templates/Orders/edit.php:39
+#: ./templates/Stock/add.php:29
+#: ./templates/Stock/edit.php:34
+#: ./templates/Tour/add.php:48
+#: ./templates/Tour/edit.php:52
+#: ./templates/Users/add.php:40
+#: ./templates/Users/edit.php:44
+msgid "Submit"
+msgstr "Voeg toe"
+
+#: ./templates/Clientsaddresses/edit.php:14
+#: ./templates/Clientsaddresses/index.php:40
+#: ./templates/Delivery/edit.php:13
+#: ./templates/Delivery/index.php:34
+#: ./templates/Itemorders/edit.php:14
+#: ./templates/Itemorders/index.php:43
+#: ./templates/Items/edit.php:13
+#: ./templates/Items/index.php:44
+#: ./templates/Orders/edit.php:14
+#: ./templates/Orders/index.php:42
+#: ./templates/Stock/edit.php:15
+#: ./templates/Stock/index.php:34
+#: ./templates/Tour/edit.php:13
+#: ./templates/Tour/index.php:31
+#: ./templates/Tour/view.php:97
+#: ./templates/Users/edit.php:13
+#: ./templates/Users/index.php:44
+msgid "Delete"
+msgstr ""
+
+#: ./templates/Clientsaddresses/edit.php:16
+#: ./templates/Clientsaddresses/index.php:40
+#: ./templates/Clientsaddresses/view.php:13
+#: ./templates/Delivery/edit.php:15
+#: ./templates/Delivery/index.php:34
+#: ./templates/Delivery/view.php:13
+#: ./templates/Itemorders/edit.php:16
+#: ./templates/Itemorders/index.php:43
+#: ./templates/Itemorders/view.php:13
+#: ./templates/Items/edit.php:15
+#: ./templates/Items/index.php:44
+#: ./templates/Orders/edit.php:16
+#: ./templates/Orders/index.php:42
+#: ./templates/Orders/view.php:13
+#: ./templates/Stock/edit.php:17
+#: ./templates/Stock/index.php:34
+#: ./templates/Stock/view.php:12
+#: ./templates/Tour/edit.php:15
+#: ./templates/Tour/index.php:31
+#: ./templates/Tour/view.php:13
+#: ./templates/Tour/view.php:97
+#: ./templates/Users/edit.php:15
+#: ./templates/Users/index.php:44
+#: ./templates/Users/view.php:13
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: ./templates/Clientsaddresses/edit.php:25
+#: ./templates/Clientsaddresses/view.php:12
+msgid "Edit Clientsaddress"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:9
+#: ./templates/Clientsaddresses/view.php:15
+msgid "New Clientsaddress"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:10
+msgid "Clientsaddresses"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:38
+#: ./templates/Delivery/index.php:32
+#: ./templates/Itemorders/index.php:41
+#: ./templates/Items/index.php:42
+#: ./templates/Orders/index.php:40
+#: ./templates/Stock/index.php:32
+#: ./templates/Tour/index.php:28
+#: ./templates/Tour/view.php:95
+#: ./templates/Users/index.php:42
+msgid "View"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:39
+#: ./templates/Delivery/index.php:33
+#: ./templates/Itemorders/index.php:42
+#: ./templates/Items/index.php:43
+#: ./templates/Orders/index.php:41
+#: ./templates/Stock/index.php:33
+#: ./templates/Tour/index.php:29
+#: ./templates/Tour/view.php:96
+#: ./templates/Users/index.php:43
+msgid "Edit"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:49
+#: ./templates/Delivery/index.php:43
+#: ./templates/Itemorders/index.php:52
+#: ./templates/Items/index.php:53
+#: ./templates/Orders/index.php:51
+#: ./templates/Stock/index.php:43
+#: ./templates/Tour/index.php:40
+#: ./templates/Users/index.php:53
+msgid "first"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:50
+#: ./templates/Delivery/index.php:44
+#: ./templates/Itemorders/index.php:53
+#: ./templates/Items/index.php:54
+#: ./templates/Orders/index.php:52
+#: ./templates/Stock/index.php:44
+#: ./templates/Tour/index.php:41
+#: ./templates/Users/index.php:54
+msgid "previous"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:52
+#: ./templates/Delivery/index.php:46
+#: ./templates/Itemorders/index.php:55
+#: ./templates/Items/index.php:56
+#: ./templates/Orders/index.php:54
+#: ./templates/Stock/index.php:46
+#: ./templates/Tour/index.php:43
+#: ./templates/Users/index.php:56
+msgid "next"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:53
+#: ./templates/Delivery/index.php:47
+#: ./templates/Itemorders/index.php:56
+#: ./templates/Items/index.php:57
+#: ./templates/Orders/index.php:55
+#: ./templates/Stock/index.php:47
+#: ./templates/Tour/index.php:44
+#: ./templates/Users/index.php:57
+msgid "last"
+msgstr ""
+
+#: ./templates/Clientsaddresses/index.php:55
+#: ./templates/Delivery/index.php:49
+#: ./templates/Itemorders/index.php:58
+#: ./templates/Items/index.php:59
+#: ./templates/Orders/index.php:57
+#: ./templates/Stock/index.php:49
+#: ./templates/Tour/index.php:46
+#: ./templates/Users/index.php:59
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:13
+msgid "Delete Clientsaddress"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:23
+#: ./templates/Itemorders/view.php:23
+#: ./templates/Orders/view.php:23
+#: ./templates/Stock/view.php:26
+msgid "User"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:27
+msgid "Street"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:31
+msgid "Number"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:35
+msgid "Zip"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:39
+#: ./templates/Tour/invitations.php:15
+msgid "City"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:43
+msgid "Telephone"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:47
+#: ./templates/Users/view.php:23
+msgid "Email"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:51
+#: ./templates/Delivery/view.php:27
+#: ./templates/Itemorders/view.php:27
+#: ./templates/Items/view.php:27
+#: ./templates/Orders/view.php:27
+#: ./templates/Stock/view.php:34
+#: ./templates/Tour/invitations.php:12
+#: ./templates/Tour/view.php:23
+#: ./templates/Tour/view.php:62
+#: ./templates/Users/view.php:47
+#: ./templates/cell/Item/display.php:20
+msgid "Id"
+msgstr ""
+
+#: ./templates/Clientsaddresses/view.php:56
+#: ./templates/Items/view.php:56
+#: ./templates/cell/Item/display.php:49
+msgid "Description"
+msgstr ""
+
+#: ./templates/Delivery/add.php:13
+#: ./templates/Delivery/edit.php:17
+#: ./templates/Delivery/view.php:14
+msgid "List Delivery"
+msgstr ""
+
+#: ./templates/Delivery/add.php:20
+msgid "Add Delivery"
+msgstr ""
+
+#: ./templates/Delivery/add.php:33
+#: ./templates/Delivery/edit.php:36
+#: ./templates/Delivery/view.php:50
+#: ./templates/Items/index.php:10
+msgid "Items"
+msgstr ""
+
+#: ./templates/Delivery/edit.php:24
+#: ./templates/Delivery/view.php:12
+msgid "Edit Delivery"
+msgstr ""
+
+#: ./templates/Delivery/index.php:9
+#: ./templates/Delivery/view.php:15
+msgid "New Delivery"
+msgstr ""
+
+#: ./templates/Delivery/index.php:10
+#: ./templates/Tour/add.php:29
+#: ./templates/Tour/edit.php:34
+msgid "Delivery"
+msgstr ""
+
+#: ./templates/Delivery/view.php:13
+msgid "Delete Delivery"
+msgstr ""
+
+#: ./templates/Delivery/view.php:23
+msgid "Subject"
+msgstr ""
+
+#: ./templates/Delivery/view.php:31
+#: ./templates/Items/view.php:43
+#: ./templates/cell/Item/display.php:36
+msgid "Deadline"
+msgstr ""
+
+#: ./templates/Delivery/view.php:35
+#: ./templates/Items/view.php:51
+#: ./templates/cell/Item/display.php:44
+msgid "Distributiondate"
+msgstr ""
+
+#: ./templates/Delivery/view.php:39
+#: ./templates/Itemorders/view.php:56
+#: ./templates/Orders/view.php:65
+#: ./templates/Stock/view.php:38
+#: ./templates/Tour/view.php:31
+#: ./templates/Tour/view.php:72
+msgid "Date"
+msgstr ""
+
+#: ./templates/Delivery/view.php:44
+#: ./templates/Tour/view.php:36
+msgid "Text"
+msgstr ""
+
+#: ./templates/Itemorders/add.php:13
+#: ./templates/Itemorders/edit.php:18
+#: ./templates/Itemorders/view.php:14
+msgid "List Itemorders"
+msgstr ""
+
+#: ./templates/Itemorders/add.php:20
+msgid "Add Itemorder"
+msgstr ""
+
+#: ./templates/Itemorders/edit.php:25
+#: ./templates/Itemorders/view.php:12
+msgid "Edit Itemorder"
+msgstr ""
+
+#: ./templates/Itemorders/index.php:10
+#: ./templates/Itemorders/view.php:15
+msgid "New Itemorder"
+msgstr ""
+
+#: ./templates/Itemorders/index.php:11
+msgid "Itemorders"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:13
+msgid "Delete Itemorder"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:31
+#: ./templates/Orders/view.php:31
+#: ./templates/Tour/view.php:63
+msgid "Order Session"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:35
+#: ./templates/Orders/view.php:35
+#: ./templates/Tour/view.php:64
+msgid "Tour Id"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:39
+#: ./templates/Orders/view.php:39
+#: ./templates/Stock/view.php:22
+#: ./templates/Tour/view.php:66
+msgid "Item"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:44
+#: ./templates/Items/view.php:31
+#: ./templates/Orders/view.php:53
+#: ./templates/Stock/view.php:30
+#: ./templates/Tour/view.php:67
+#: ./templates/cell/Clientitem/display.php:30
+#: ./templates/cell/Item/display.php:24
+msgid "Quantity"
+msgstr "Aantal"
+
+#: ./templates/Itemorders/view.php:48
+#: ./templates/Items/view.php:35
+#: ./templates/Orders/view.php:57
+#: ./templates/Tour/view.php:68
+#: ./templates/cell/Clientitem/display.php:33
+#: ./templates/cell/Item/display.php:28
+msgid "Price"
+msgstr "Prijs"
+
+#: ./templates/Itemorders/view.php:52
+#: ./templates/Orders/view.php:61
+#: ./templates/Tour/view.php:70
+msgid "Pay"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:61
+#: ./templates/Orders/view.php:70
+#: ./templates/Tour/view.php:69
+msgid "Notes"
+msgstr ""
+
+#: ./templates/Itemorders/view.php:67
+#: ./templates/Orders/view.php:76
+#: ./templates/Tour/view.php:71
+msgid "Review"
+msgstr ""
+
+#: ./templates/Items/add.php:12
+#: ./templates/Items/edit.php:17
+msgid "List Items"
+msgstr ""
+
+#: ./templates/Items/add.php:19
+msgid "Add Item"
+msgstr ""
+
+#: ./templates/Items/edit.php:24
+msgid "Edit Item"
+msgstr ""
+
+#: ./templates/Items/index.php:9
+msgid "New Item"
+msgstr ""
+
+#: ./templates/Items/view.php:15
+#: ./templates/Tour/invitations.php:13
+#: ./templates/Tour/view.php:61
+#: ./templates/Users/view.php:27
+#: ./templates/cell/Item/display.php:8
+msgid "Name"
+msgstr ""
+
+#: ./templates/Items/view.php:19
+#: ./templates/Users/view.php:35
+#: ./templates/cell/Item/display.php:12
+msgid "Photo"
+msgstr ""
+
+#: ./templates/Items/view.php:23
+#: ./templates/Users/view.php:39
+#: ./templates/cell/Item/display.php:16
+msgid "Photo Dir"
+msgstr ""
+
+#: ./templates/Items/view.php:39
+#: ./templates/cell/Item/display.php:32
+msgid "Weight"
+msgstr ""
+
+#: ./templates/Items/view.php:47
+#: ./templates/cell/Item/display.php:40
+msgid "Productiondate"
+msgstr ""
+
+#: ./templates/Items/view.php:62
+#: ./templates/cell/Item/display.php:55
+msgid "Ingredients"
+msgstr ""
+
+#: ./templates/Orders/add.php:13
+#: ./templates/Orders/edit.php:18
+#: ./templates/Orders/view.php:14
+msgid "List Orders"
+msgstr ""
+
+#: ./templates/Orders/add.php:20
+#: ./templates/Orders/clientadd.php:88
+msgid "Add Order"
+msgstr ""
+
+#: ./templates/Orders/clientadd.php:10
+msgid "Hello {0}"
+msgstr "Hallo {0}"
+
+#: ./templates/Orders/clientadd.php:18
+msgid "Expected delivery on {0} between {1}h and {2}h"
+msgstr "De levering gebeurt op {0} tussen {1}h en {2}h"
+
+#: ./templates/Orders/clientadd.php:28
+msgid "Alter your order before {0}"
+msgstr "Bewerk je bestelling voor {0}"
+
+#: ./templates/Orders/clientadd.php:46
+#: ./templates/Orders/view.php:13
+msgid "Delete Order"
+msgstr "Verwijder de bestelling"
+
+#: ./templates/Orders/clientadd.php:46
+msgid "Are you sure you want to delete your order?"
+msgstr "Ben je zeker dat je de bestelling wil verwijderen?"
+
+#: ./templates/Orders/clientadd.php:84
+msgid "Order before {0}"
+msgstr "Bestel voor {0}"
+
+#: ./templates/Orders/clientadd.php:110
+msgid "I will pay upon delivery"
+msgstr "Ik betaal cash bij levering"
+
+#: ./templates/Orders/clientadd.php:131
+msgid "De deadline om te bestellen was {0}, graag tot een volgende bestelronde."
+msgstr "De deadline om te bestellen was {0}, graag tot een volgende bestelronde."
+
+#: ./templates/Orders/clientadd.php:144
+msgid "Order History"
+msgstr "Bestelgeschiedenis"
+
+#: ./templates/Orders/clientadd.php:183
+#: ./templates/cell/Clienthistory/display.php:41
+msgid "Total: €{0}"
+msgstr "Totaal: €{0}"
+
+#: ./templates/Orders/edit.php:25
+#: ./templates/Orders/view.php:12
+msgid "Edit Order"
+msgstr ""
+
+#: ./templates/Orders/index.php:9
+#: ./templates/Orders/view.php:15
+msgid "New Order"
+msgstr ""
+
+#: ./templates/Orders/index.php:10
+msgid "Orders"
+msgstr ""
+
+#: ./templates/Stock/add.php:14
+#: ./templates/Stock/edit.php:19
+#: ./templates/Stock/view.php:13
+msgid "List Stock"
+msgstr ""
+
+#: ./templates/Stock/add.php:21
+msgid "Add Stock"
+msgstr ""
+
+#: ./templates/Stock/edit.php:26
+#: ./templates/Stock/view.php:11
+msgid "Edit Stock"
+msgstr ""
+
+#: ./templates/Stock/index.php:9
+#: ./templates/Stock/view.php:14
+msgid "New Stock"
+msgstr ""
+
+#: ./templates/Stock/index.php:10
+msgid "Stock"
+msgstr ""
+
+#: ./templates/Stock/view.php:12
+msgid "Delete Stock"
+msgstr ""
+
+#: ./templates/Tour/add.php:12
+#: ./templates/Tour/edit.php:17
+#: ./templates/Tour/view.php:14
+msgid "List Tour"
+msgstr ""
+
+#: ./templates/Tour/add.php:19
+msgid "Add Tour"
+msgstr ""
+
+#: ./templates/Tour/add.php:40
+#: ./templates/Tour/edit.php:45
+#: ./templates/Tour/view.php:42
+msgid "Clients"
+msgstr ""
+
+#: ./templates/Tour/edit.php:24
+#: ./templates/Tour/view.php:12
+msgid "Edit Tour"
+msgstr ""
+
+#: ./templates/Tour/index.php:9
+#: ./templates/Tour/view.php:15
+msgid "New Tour"
+msgstr ""
+
+#: ./templates/Tour/index.php:10
+msgid "Tour"
+msgstr ""
+
+#: ./templates/Tour/index.php:30
+msgid "Invitations"
+msgstr ""
+
+#: ./templates/Tour/invitations.php:14
+#: ./templates/Users/view.php:31
+msgid "First Name"
+msgstr ""
+
+#: ./templates/Tour/invitations.php:30
+msgid "invite"
+msgstr ""
+
+#: ./templates/Tour/view.php:13
+msgid "Delete Tour"
+msgstr ""
+
+#: ./templates/Tour/view.php:27
+msgid "Delivery Id"
+msgstr ""
+
+#: ./templates/Tour/view.php:48
+msgid "Total Orders"
+msgstr ""
+
+#: ./templates/Tour/view.php:56
+msgid "Detail Item Orders"
+msgstr ""
+
+#: ./templates/Tour/view.php:65
+msgid "User Id"
+msgstr ""
+
+#: ./templates/Users/add.php:12
+#: ./templates/Users/edit.php:17
+#: ./templates/Users/view.php:14
+msgid "List Users"
+msgstr ""
+
+#: ./templates/Users/add.php:19
+msgid "Add User"
+msgstr ""
+
+#: ./templates/Users/edit.php:24
+#: ./templates/Users/view.php:12
+msgid "Edit User"
+msgstr ""
+
+#: ./templates/Users/index.php:9
+#: ./templates/Users/view.php:15
+msgid "New User"
+msgstr ""
+
+#: ./templates/Users/index.php:10
+msgid "Users"
+msgstr ""
+
+#: ./templates/Users/login.php:9
+msgid "Please enter your username and password"
+msgstr ""
+
+#: ./templates/Users/login.php:13
+msgid "Login"
+msgstr ""
+
+#: ./templates/Users/view.php:13
+msgid "Delete User"
+msgstr ""
+
+#: ./templates/Users/view.php:43
+msgid "User Type"
+msgstr ""
+
+#: ./templates/Users/view.php:51
+msgid "Created"
+msgstr ""
+
+#: ./templates/Users/view.php:55
+msgid "Modified"
+msgstr ""
+
+#: ./templates/Users/view.php:59
+msgid "Contract"
+msgstr ""
+
+#: ./templates/Users/view.php:60
+msgid "Yes"
+msgstr ""
+
+#: ./templates/Users/view.php:60
+msgid "No"
+msgstr ""
+
+#: ./templates/layout/error.php:38
+msgid "Back"
+msgstr ""
+
