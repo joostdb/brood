@@ -38,11 +38,10 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 echo $this->Form->control(
                     'clients',
                     ['autocomplete' => 'off',
-                        'type' => 'select',
-                        'multiple' => true,
+                        'multiple' => 'checkbox',
                         'options' => $clientsext,
                         'empty' => true,
-                        'class' => 'form-select mb-4',
+                        'class' => 'mb-4',
                         'label' => __('Clients')
                     ]
                 );

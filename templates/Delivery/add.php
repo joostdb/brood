@@ -25,11 +25,11 @@ use Cake\I18n\FrozenTime;
                 echo $this->Form->control(
                     'items',
                     ['autocomplete' => 'off',
-                        'type' => 'select',
-                        'multiple' => true,
+
+                        'multiple' => 'checkbox',
                         'options' => $items,
                         'empty' => true,
-                        'class' => 'form-select mb-4',
+                        'class' => 'mb-4',
                         'label' => __('Items')
                     ]
                 );

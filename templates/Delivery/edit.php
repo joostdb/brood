@@ -28,11 +28,11 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 echo $this->Form->control(
                     'items',
                     ['autocomplete' => 'off',
-                        'type' => 'select',
-                        'multiple' => true,
+
+                        'multiple' => 'checkbox',
                         'options' => $itemsext,
                         'empty' => true,
-                        'class' => 'form-select mb-4',
+                        'class' => 'mb-4',
                         'label' => __('Items')
                     ]
                 );
