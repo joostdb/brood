@@ -45,6 +45,8 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                         'label' => __('Clients')
                     ]
                 );
+                echo $this->Form->control('volume', ['default' => '100']);
+                echo $this->Form->control('pickup', ['type' => 'checkbox', 'class' => 'custom-control-input']);
                     echo $this->Form->control('distributiondate', ['empty' => true]);
                     echo $this->Form->control('date', ['empty' => true]);
                 ?>

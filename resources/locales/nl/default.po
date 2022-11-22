@@ -862,3 +862,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+
+msgid "Only {0} left"
+msgstr "Nog {0} over"
+

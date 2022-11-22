@@ -311,7 +311,6 @@ class OrdersController extends AppController
 
 
         $lastorders = $this->fetchTable('Orders')->find()->contain(['Users'])->where(['user_id' => $user->id])->limit(5)->order(['Orders.id' => 'desc'])->toArray();;
-//dd($lastorders);
 
         foreach($lastorders AS $lastorder) {
             $orderitems = json_decode($lastorder['itemorders']);

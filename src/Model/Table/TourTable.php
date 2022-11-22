@@ -73,6 +73,16 @@ class TourTable extends Table
             ->allowEmptyString('clients');
 
         $validator
+            ->integer('pickup')
+            ->requirePresence('pickup', 'create')
+            ->notEmptyString('pickup');
+
+        $validator
+            ->integer('volume')
+            ->requirePresence('volume', 'create')
+            ->notEmptyString('volume');
+
+        $validator
             ->dateTime('distributiondate')
             ->allowEmptyDateTime('distributiondate');
         $validator

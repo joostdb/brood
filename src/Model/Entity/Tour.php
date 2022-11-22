@@ -30,6 +30,8 @@ class Tour extends Entity
         'delivery_id' => true,
         'text' => true,
         'clients' => true,
+        'volume' => true,
+        'pickup' => true,
         'distributiondate' => true,
         'date' => true,
     ];

@@ -77,6 +77,8 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                         <?php
                         foreach ($clients as $client) :
                                     foreach ($client->itemorders as $order) :
+
+                                        if($order->quantity > 0){
                                         ?>
                                         <tr>
                                             <td class="h6"><?= $client->name ?></td>
@@ -97,7 +99,11 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                                                 <?= $this->Form->postLink(__('Delete'), ['controller' => 'Itemorders', 'action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
+
+                                    <?php
+                                        }
+                                    endforeach;
+                                        ?>
                         <?php endforeach; ?>
                     </table>
                 </div>

@@ -23,11 +23,19 @@
     </ul>
     <div class="card-body">
 
-        <?php $availablestock = $item->quantity - $item->stocktotaal; ?>
+        <?php
+        $availablestock = $item->quantity - $item->stocktotaal;
+
+        $availablestock = ($availablestock /100) * $item->tour->volume; // beschikbaar volume per afnemer
+
+        ?>
         <?= $this->Form->control('item['.$item->id.']',['type' => 'hidden', 'value' => $item->id]) ?>
         <div class="row">
             <div class="col-6 border-end">
-                <?= $this->Form->control('quantity['.$item->id.']',['id' => 'quantity['.$item->id.']', 'type' => 'number', 'class' => 'tap', 'label' => __('Quantity'), 'value' => '0', 'onchange' => 'calculateTotal'.$item->id.'()', 'max' => $availablestock, 'min' => '0', 'required']) ?>
+                <?= $this->Form->control('quantity['.$item->id.']',['id' => 'quantity['.$item->id.']', 'type' => 'number', 'class' => 'tap', 'label' => __('Quantity'), 'value' => '0', 'onchange' => 'calculateTotal'.$item->id.'()', 'max' => ceil($availablestock), 'min' => '0',
+                    'tooltip' => 'Tooltip text', 'templates' => [
+                    'tooltip' => '<span data-toggle="tooltip" data-placement="bottom" data-html="true" title="' . __('Nog {0} over.', ceil($availablestock)) .'"><i class="fa-regular fa-circle-question"></i></span>',
+                ],'required']) ?>
             </div>
             <div class="col-6">
                 <?= $this->Form->control('price['.$item->id.']',['id' => 'price['.$item->id.']', 'label' => __('Price'), 'value' => '0', 'disabled' => true]) ?>

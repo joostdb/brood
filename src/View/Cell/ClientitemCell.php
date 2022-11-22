@@ -32,11 +32,15 @@ class ClientitemCell extends Cell
      *
      * @return void
      */
-    public function display($id)
+    public function display($id, $tour)
     {
         $item = $this->fetchTable('Items')->get($id, [
             'contain' => ['Stock'],
         ]);
+
+        $item->tour = $this->fetchTable('Tour')->get($tour);
+
+
         foreach ($item->stock AS $stock)
         {
             $item->stocktotaal = $item->stocktotaal + $stock->quantity;

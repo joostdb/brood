@@ -14,8 +14,16 @@ $date = new FrozenTime($tour->distributiondate);
 $minDate = $date->modify('-1 hours');
 $plusDate = $date->modify('+1 hours');
 ?>
+<h6>
+<?php
+if($tour->pickup){
+    echo __('Pickup on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]);
+}else{
 
-<h6><?= __('Expected delivery on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]) ?></h6>
+    echo__('Expected delivery on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]);
+}
+?>
+</h6>
 
 
 <?php
@@ -95,7 +103,7 @@ if($delivery->deadline > $now){
 
             <?php
             foreach ($delivery['itemlist'] AS $item){
-                $cell = $this->cell('Clientitem', [$item]);
+                $cell = $this->cell('Clientitem', [$item, $tour->id]);
                 echo $cell;
             }
             ?>
@@ -217,6 +225,7 @@ else{
 <script>
 
     $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip()
         $("#liveToast").toast('show');
     });
 
