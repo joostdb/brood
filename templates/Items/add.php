@@ -18,6 +18,13 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
             <fieldset>
                 <legend><?= __('Add Item') ?></legend>
                 <?php
+                use Cake\I18n\FrozenTime;
+                FrozenTime::setToStringFormat("d/m/Y 00:0:00");
+                $dist = FrozenTime::now();
+                $date = FrozenTime::createFromTimestamp(time());
+                $dead = $date->modify('+1 week');
+
+
                     echo $this->Form->control('name');
                     echo $this->Form->control('description');
                     echo $this->Form->control('ingredients');
@@ -25,9 +32,9 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                     echo $this->Form->control('price');
                     echo $this->Form->control('weight');
                     echo $this->Form->control('photo', ['type' => 'file', 'class' => 'form-control']);
-                    echo $this->Form->control('deadline');
-                    echo $this->Form->control('productiondate', ['empty' => true]);
-                    echo $this->Form->control('distributiondate', ['empty' => true]);
+                    echo $this->Form->control('deadline', ['value' => $dead]);
+                    echo $this->Form->control('productiondate', ['empty' => true, 'value' => $dist]);
+                    echo $this->Form->control('distributiondate', ['empty' => true, 'value' => $dist]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -28,12 +28,12 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 echo $this->Form->control('name');
                 echo $this->Form->control('first_name');
 
-                echo $this->Form->control('street');
-                echo $this->Form->control('number');
-                echo $this->Form->control('zip');
-                echo $this->Form->control('city');
-                echo $this->Form->control('description');
-                echo $this->Form->control('telephone');
+                echo $this->Form->control('street',['value'=> $user->clientsaddress->street]);
+                echo $this->Form->control('number',['value'=> $user->clientsaddress->number]);
+                echo $this->Form->control('zip',['value'=> $user->clientsaddress->zip]);
+                echo $this->Form->control('city',['value'=> $user->clientsaddress->city]);
+                echo $this->Form->control('description',['value'=> $user->clientsaddress->description]);
+                echo $this->Form->control('telephone',['value' => $user->clientsaddress->telephone]);
 
                 echo $this->Form->control('photo');
                 echo $this->Form->control('photo_dir');

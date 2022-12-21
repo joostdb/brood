@@ -866,3 +866,36 @@ msgstr ""
 msgid "Only {0} left"
 msgstr "Nog {0} over"
 
+msgid "Please update your profile to continue."
+msgstr "Pas eerst je gegevens aan om verder te kunnen gaan."
+
+msgid "Edit profile"
+msgstr "Bewerk je profiel"
+
+msgid "Name"
+msgstr "Achternaam"
+
+msgid "First Name"
+msgstr "Voornaam"
+
+msgid "Street"
+msgstr "Straat"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Zip"
+msgstr "Postcode"
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "Description"
+msgstr "Nota"
+
+msgid "Telephone"
+msgstr "Telefoonnummer met Whatsapp-koppeling"
+
+msgid "Email"
+msgstr "E-mail"
+

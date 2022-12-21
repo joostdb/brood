@@ -75,7 +75,7 @@ class TourTable extends Table
         $validator
             ->integer('pickup')
             ->requirePresence('pickup', 'create')
-            ->notEmptyString('pickup');
+            ->allowEmptyString('pickup');
 
         $validator
             ->integer('volume')

@@ -9,29 +9,31 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Tour'), ['action' => 'edit', $tour->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Tour'), ['action' => 'delete', $tour->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tour->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Tour'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Tour'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <div class="btn-group w-100">
+                <?= $this->Html->link(__('Edit Tour'), ['action' => 'edit', $tour->id], ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Form->postLink(__('Delete Tour'), ['action' => 'delete', $tour->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tour->id), 'class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('List Tour'), ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('New Tour'), ['action' => 'add'], ['class' => 'btn btn-secondary']) ?>
+            </div>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="tour view content">
             <h3><?= h($tour->id) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($tour->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Delivery Id') ?></th>
-                    <td><?= $this->Number->format($tour->delivery_id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date') ?></th>
-                    <td><?= h($tour->date) ?></td>
-                </tr>
-            </table>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4"><?= __('Id') ?></div>
+                    <div class="col-8"><?= $this->Number->format($tour->id) ?></div>
+                </div>
+                <div class="row">
+                    <div class="col-4"><?= __('Delivery Id') ?></div>
+                    <div class="col-8"><?= $this->Number->format($tour->delivery_id) ?></div>
+                </div>
+                <div class="row">
+                    <div class="col-4"><?= __('Date') ?></div>
+                    <div class="col-8"><?= h($tour->date) ?></div>
+                </div>
+            </div>
             <div class="text">
                 <strong><?= __('Text') ?></strong>
                 <blockquote>
@@ -47,67 +49,56 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
 
             <h4><?= __('Total Orders') ?></h4>
             <?php
-                        foreach ($totalen as $totaal) :
-            ?>
-<?= $totaal['name'] ?> = <?= $totaal['quantity'] ?><br>
+            foreach ($totalen as $totaal) :
+                ?>
+                <ul class="list-group w-50">
+                    <li class="list-group-item"><?= $totaal['name'] ?> = <?= $totaal['quantity'] ?></li>
+                </ul>
+            <?php endforeach; ?>
 
-                        <?php endforeach; ?>
             <div class="related">
+
                 <h4><?= __('Detail Item Orders') ?></h4>
                 <?php if (!empty($tour->itemorders)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Name') ?></th>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Order Session') ?></th>
-                            <th><?= __('Tour Id') ?></th>
-                            <th><?= __('User Id') ?></th>
-                            <th><?= __('Item') ?></th>
-                            <th><?= __('Quantity') ?></th>
-                            <th><?= __('Price') ?></th>
-                            <th><?= __('Notes') ?></th>
-                            <th><?= __('Pay') ?></th>
-                            <th><?= __('Review') ?></th>
-                            <th><?= __('Date') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
+                <div class="row">
+                    <?php
+                    foreach ($clients as $client) :
+                    foreach ($client->itemorders as $order) :
+                    if ($order->quantity > 0) {
+                    ?>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $client->name ?></h5>
+                                <p class="card-text">
+                                    <strong><?= __('Id') ?>:</strong> <?= $order->id ?><br>
+                                    <strong><?= __('Order Session') ?>:</strong> <?= $order->order_session ?><br>
+                                    <strong><?= __('Tour Id') ?>:</strong> <?= h($order->tour_id) ?><br>
+                                    <strong><?= __('User Id') ?>:</strong> <?= h($order->user_id) ?><br>
+                                    <strong><?= __('Item') ?>:</strong> <?= h($order->item) ?><br>
+                                    <strong><?= __('Quantity') ?>:</strong> <?= h($order->quantity) ?><br>
+                                    <strong><?= __('Price') ?>:</strong> <?= h($order->price) ?><br>
+                                    <strong><?= __('Notes') ?>:</strong> <?= h($order->notes) ?><br>
+                                    <strong><?= __('Pay') ?>:</strong> <?= h($order->pay) ?><br>
+                                    <strong><?= __('Review') ?>:</strong> <?= h($order->review) ?><br>
+                                    <strong><?= __('Date') ?>:</strong> <?= h($order->date) ?>
+                                </p>
 
-
+                                <div class="text-center">
+                                    <?= $this->Html->link(__('View'), ['controller' => 'Itemorders', 'action' => 'view', $order->id], ['class' => 'btn btn-secondary']) ?>
+                                    <?= $this->Html->link(__('Edit'), ['controller' => 'Itemorders', 'action' => 'edit', $order->id], ['class' => 'btn btn-primary']) ?>
+                                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Itemorders', 'action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id), 'class' => 'btn btn-danger']) ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <?php
-                        foreach ($clients as $client) :
-                                    foreach ($client->itemorders as $order) :
-
-                                        if($order->quantity > 0){
-                                        ?>
-                                        <tr>
-                                            <td class="h6"><?= $client->name ?></td>
-                                            <td><?= $order->id ?></td>
-                                            <td><?= $order->order_session ?></td>
-                                            <td><?= h($order->tour_id) ?></td>
-                                            <td><?= h($order->user_id) ?></td>
-                                            <td><?= h($order->item) ?></td>
-                                            <td><?= h($order->quantity) ?></td>
-                                            <td><?= h($order->price) ?></td>
-                                            <td><?= h($order->notes) ?></td>
-                                            <td><?= h($order->pay) ?></td>
-                                            <td><?= h($order->review) ?></td>
-                                            <td><?= h($order->date) ?></td>
-                                            <td class="actions">
-                                                <?= $this->Html->link(__('View'), ['controller' => 'Itemorders', 'action' => 'view', $order->id]) ?>
-                                                <?= $this->Html->link(__('Edit'), ['controller' => 'Itemorders', 'action' => 'edit', $order->id]) ?>
-                                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Itemorders', 'action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
-                                            </td>
-                                        </tr>
-
-                                    <?php
-                                        }
-                                    endforeach;
-                                        ?>
-                        <?php endforeach; ?>
-                    </table>
+                    }
+                    endforeach;
+                        ?>
+                    <?php endforeach; ?>
                 </div>
-                <?php endif; ?>
+                                <?php endif; ?>
             </div>
         </div>
     </div>

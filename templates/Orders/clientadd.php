@@ -13,16 +13,26 @@ use Cake\I18n\FrozenTime;
 $date = new FrozenTime($tour->distributiondate);
 $minDate = $date->modify('-1 hours');
 $plusDate = $date->modify('+1 hours');
+$status = false;
 ?>
 <h6>
+    <?php
+    if($profile == 0){
+        $status = true;
+        echo '<div class="alert alert-warning" role="alert">' . __('Please update your profile to continue.') . '</div>';
+    }
+    ?>
 <?php
 if($tour->pickup){
     echo __('Pickup on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]);
 }else{
 
-    echo__('Expected delivery on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]);
+    echo __('Expected delivery on {0} between {1}h and {2}h', [$minDate->format('d-m-Y'), $minDate->format('H:00'), $plusDate->format('H:00')]);
 }
 ?>
+
+
+
 </h6>
 
 
@@ -36,7 +46,6 @@ if($delivery->deadline > $now){
     <h6><?= __('Alter your order before {0}', $delivery->deadline) ?></h6>
     <?php
 }
-
     ?>
     <div class="row">
 
@@ -121,7 +130,7 @@ if($delivery->deadline > $now){
                 ?>
             </fieldset>
 
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Submit'),['disabled' => $status]) ?>
 
         </div>
         <?= $this->Form->end() ?>
@@ -208,7 +217,7 @@ else{
 </div>
 
 
-<div class="start-toast toast-container position-fixed top-0 end-0 p-3">
+<div class="start-toast toast-container position-fixed top-0 start-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="20000" data-bs-autohide="true">
         <div class="toast-header">
             🙂
@@ -217,7 +226,7 @@ else{
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            Hallo! Welkom op de eerste versie van mijn broodronde-app. Ik ga dit stelselmatig aanpassen en (hopelijk) verbeteren tot dat brood bestellen een 'piece of cake' is. Groeten, Joost
+            Hallo! Welkom op de eerste versie van mijn broodronde-app. <br> Nieuw hier? Vul eerst je gegevens aan. <br>Ik ga dit stelselmatig aanpassen en (hopelijk) verbeteren tot dat brood bestellen een 'piece of cake' is. Groeten, Joost
         </div>
     </div>
 </div>

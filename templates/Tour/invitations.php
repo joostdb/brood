@@ -18,6 +18,12 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
 
 
     <?php
+
+    use Cake\I18n\FrozenTime;
+  //  FrozenTime::setToStringFormat("EEEE, MMMM");
+    $date = new FrozenTime($tour->distributiondate);
+    $dist = $date->i18nFormat("EEEE dd MMMM");
+
     foreach ($clients as $client) :
 
             ?>
@@ -29,6 +35,9 @@ $this->extend('../layout/TwitterBootstrap/dashboard');
                 <td class="actions">
                     <?= $this->Html->link(__('invite'), ['controller' => 'Orders', 'action' => 'clientadd', '?' =>['t' => md5($tour->id), 'c' => md5($client->id)]]) ?>
                     <?= $this->Html->link(__('mail'), ['controller' => 'tour', 'action' => 'mailinvitation', '?' =>['t' => md5($tour->id), 'm' => md5($client->id)]]) ?>
+                    <?= $this->Html->link(
+                        'WhatsApp',
+                        'https://wa.me/'. $client->clientsaddress->telephone .'?text=Hallo '. $client->first_name .'%0aOp ' . $dist . ' is er een nieuwe broodronde, via de link hieronder kan je intekenen:%0ahttps://brood.eke.be/brood/orders/clientadd?t='.md5($tour->id).'%26c='.md5($client->id) .' %0aGroeten, Joost',['target'=>'_blank'] ) ?>
      </td>
             </tr>
 

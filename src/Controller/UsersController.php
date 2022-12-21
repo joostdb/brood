@@ -17,7 +17,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login']);
+        $this->Authentication->addUnauthenticatedActions(['login','profile']);
 
     }
     /**
@@ -59,7 +59,14 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             $user->master_id = $this->user_id;
+
+            $newdata = $this->request->getData();
+
             if ($this->Users->save($user)) {
+                $newdata['user_id'] = $user->id;
+                $userextra = $this->fetchTable('Clientsaddresses')->newEmptyEntity();
+                $clientsaddress = $this->fetchTable('Clientsaddresses')->patchEntity($userextra, $newdata);
+                $this->fetchTable('Clientsaddresses')->save($clientsaddress);
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -79,15 +86,45 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => [],
+            'contain' => ['Clientsaddresses'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $newdata = $this->request->getData();
+            $clientsaddress = $this->fetchTable('Clientsaddresses')->find()->where(['user_id' => $user->id])->first();
+            $clientsaddress = $this->fetchTable('Clientsaddresses')->patchEntity($clientsaddress, $newdata);
+
             $user->master_id = $this->user_id;
             if ($this->Users->save($user)) {
+                $this->fetchTable('Clientsaddresses')->save($clientsaddress);
+
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $this->set(compact('user'));
+    }
+    public function profile($id = null)
+    {
+        $user = $this->Users->find('all')->contain('Clientsaddresses')->where(['md5(Users.id)' => $id])->first();
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $newdata = $this->request->getData();
+            $clientsaddress = $this->fetchTable('Clientsaddresses')->find()->where(['user_id' => $user->id])->first();
+            $clientsaddress = $this->fetchTable('Clientsaddresses')->patchEntity($clientsaddress, $newdata);
+
+            //$user->master_id = $user->id;
+            if ($this->Users->save($user)) {
+                $this->fetchTable('Clientsaddresses')->save($clientsaddress);
+
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect($this->baseURL  .'orders/clientadd?t='. $this->request->getData('t') .'&c='. md5(strval($user->id)));
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

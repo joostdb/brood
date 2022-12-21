@@ -75,6 +75,7 @@ class AppController extends Controller
 
         }
         $this->set('baseURL', 'https://brood.eke.be/brood/');
+        $this->baseURL = 'https://brood.eke.be/brood/';
         $this->set('now', FrozenTime::now());
 
         /*

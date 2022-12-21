@@ -170,10 +170,16 @@ class OrdersController extends AppController
         $tour = $this->fetchTable('Tour')->find('all')->select(['id'])->where(['md5(id)' => $this->request->getQuery('t')])->toArray();
         $tour = $this->fetchTable('Tour')->get($tour['0']['id']);
         $this->set('tour', $tour);
-        $user = $this->fetchTable('Users')->find('all')->select(['id'])->where(['md5(id)' => $this->request->getQuery('c')])->toArray();
-        $user = $this->fetchTable('Users')->get($user['0']['id']);
+        $user = $this->fetchTable('Users')->find('all')->select(['Users.id'])->where(['md5(Users.id)' => $this->request->getQuery('c')])->toArray();
+        $user = $this->fetchTable('Users')->get($user['0']['id'], [
+            'contain' => ['Clientsaddresses'],
+        ]);
         $this->set('user', $user);
-
+        $this->set('profile', 1);
+        //Controle op profiel
+        if(!$user->clientsaddress->street || !$user->clientsaddress->number || !$user->clientsaddress->city){
+            $this->set('profile', 0);
+        }
 
         //Is er reeds een bestelling?
 
@@ -331,5 +337,59 @@ class OrdersController extends AppController
 
     }
 
+    public function calendar()
+    {
+        // Retrieve the current date and time
+        $currentDateTime = new \DateTime();
+
+        // Set the timezone to use for the calendar
+        $timezone = new \DateTimeZone('America/New_York');
+        $currentDateTime->setTimezone($timezone);
+
+        // Set the start and end times for the calendar
+        $startTime = clone $currentDateTime;
+        $startTime->setTime(9, 0);
+
+        $endTime = clone $currentDateTime;
+        $endTime->setTime(18, 59);
+
+        // Create an array of time slots every 15 minutes
+        $timeSlots = [];
+        $currentTime = clone $startTime;
+        while ($currentTime <= $endTime) {
+            $timeSlots[] = $currentTime->format('H:i');
+            $currentTime->modify('+15 minutes');
+        }
+
+        // Set the variables to be passed to the view
+        $this->set(compact('currentDateTime', 'timeSlots'));
+    }
+    public function gettimeslots()
+    {
+        // set the date to yesterday
+        $yesterday = FrozenTime::now()->subDay();
+
+        $startTime = $yesterday->setTime(9, 0); // set the start time for the calendar to 9:00 am
+        $endTime = $yesterday->setTime(17, 0); // set the end time for the calendar to 5:00 pm
+
+        $interval = new \DateInterval('PT15M'); // create a DateInterval object with a interval of 15 minutes
+
+        $period = new \DatePeriod($startTime, $interval, $endTime); // create a DatePeriod object starting at the start time, with the interval specified above, and ending at the end time
+
+        $calendar = []; // create an array to hold the calendar data
+
+        foreach ($period as $time) { // loop through each time in the period
+            $calendar[] = [
+                'time' => $time->i18nFormat('H:mm'), // format the time as a string
+                'event' => null // set the default event for each time as null
+            ];
+        }
+        $output = $yesterday;
+        $this->set(compact('calendar')); // pass the calendar array to the view
+        $this->set(compact('output')); // pass the calendar array to the view
+
+        // render the same view as the index action
+        $this->render('calendar');
+    }
 
 }

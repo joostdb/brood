@@ -63,6 +63,55 @@ $this->start('tb_body_start');
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
                 <div class="position-sticky pt-3">
                     <?= $this->fetch('tb_sidebar') ?>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+                    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
+                    <style>
+                        .step-text {
+                            font-size: 1.25rem;
+                        }
+
+                    </style>
+                    <div class="container mt-5">
+                        <div id="stepper" class="bs-stepper vertical linear">
+                            <div class="bs-stepper-header" role="tablist">
+                                <div class="step active" data-target="#test-vl-1">
+                                    <button type="button" class="step-trigger" role="tab" id="stepperTrigger1" aria-controls="test-vl-1" aria-selected="true">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <span class="bs-stepper-label">Users</span>
+                                    </button>
+                                </div>
+                                <div class="bs-stepper-line"></div>
+                                <div class="step" data-target="#test-vl-2">112
+                                    <button type="button" class="step-trigger" role="tab" id="stepperTrigger2" aria-controls="test-vl-2" aria-selected="false" disabled="disabled">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <span class="bs-stepper-label">Items</span>
+                                    </button>
+                                </div>
+                                <div class="bs-stepper-line"></div>
+                                <div class="step" data-target="#test-vl-3">
+                                    <button type="button" class="step-trigger" role="tab" id="stepperTrigger3" aria-controls="test-vl-3" aria-selected="false" disabled="disabled">
+                                        <span class="bs-stepper-circle">3</span>
+                                        <span class="bs-stepper-label">Delivery</span>
+                                    </button>
+                                </div>
+                                    <div class="bs-stepper-line"></div>
+                                    <div class="step" data-target="#step4">
+                                        <button type="button" class="step-trigger" role="tab" id="stepper-4-trigger" aria-controls="step4" aria-selected="false" disabled="disabled">
+                                            <span class="bs-stepper-circle">4</span>
+                                            <span class="bs-stepper-label">Tour</span>
+                                        </button>
+                                    </div>
+                                <div class="bs-stepper-line"></div>
+                                    <div class="step" data-target="#step5">
+                                        <button type="button" class="step-trigger" role="tab" id="stepper-5-trigger" aria-controls="step5" aria-selected="false" disabled="disabled">
+                                            <span class="bs-stepper-circle">5</span>
+                                            <span class="bs-stepper-label">Orders</span>
+                                        </button>
+                                    </div>
+                                    </div>
+                                    </div>
+
+
                 </div>
             </nav>
 

@@ -93,7 +93,23 @@ class ItemsController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $item = $this->Items->patchEntity($item, $this->request->getData());
+            $newdata = $this->request->getData();
+            if(@$newdata['del_photo']){
+
+                $files = glob('/var/www/clients/client0/web10/web/brood/webroot/files/items/photo/' . $newdata['photo_dir'].'/*');
+                if (is_array($files) || is_object($files)) {
+                foreach($files as $file) {
+                    if(is_file($file))
+                        unlink($file);
+                }
+                    rmdir('/var/www/clients/client0/web10/web/brood/webroot/files/items/photo/' . $newdata['photo_dir']);
+                }
+
+                $newdata['photo'] = '';
+                $newdata['photo_dir'] = '';
+
+            }
+            $item = $this->Items->patchEntity($item, $newdata);
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
 
